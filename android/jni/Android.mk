@@ -9,15 +9,15 @@ MY_LOCAL_PATH := $(call my-dir)
 # libiconv
 include $(CLEAR_VARS)
 LOCAL_PATH := $(ICONV_SRC)
+TARGET_ARCH_ABI := armeabi-v7a
 
 LOCAL_MODULE := libiconv
 
 LOCAL_CFLAGS := \
     -Wno-multichar \
     -D_ANDROID \
-    -DLIBDIR="c" \
+    -DLIBDIR="\"c\"" \
     -DBUILDING_LIBICONV \
-    -DBUILDING_LIBCHARSET \
     -DIN_LIBRARY
 
 LOCAL_SRC_FILES := \
@@ -27,6 +27,7 @@ LOCAL_SRC_FILES := \
 
 LOCAL_C_INCLUDES := \
 	$(ICONV_SRC)/include \
+	$(IVONV_SRC)/lib \
 	$(ICONV_SRC)/libcharset \
 	$(ICONV_SRC)/libcharset/include
 
@@ -36,6 +37,8 @@ LOCAL_LDLIBS := -llog -lcharset
 
 # libzbarjni
 include $(CLEAR_VARS)
+
+LOCAL_LDLIBS := -llog
 
 LOCAL_PATH := $(MY_LOCAL_PATH)
 LOCAL_MODULE := zbarjni

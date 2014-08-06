@@ -197,13 +197,14 @@ Java_net_sourceforge_zbar_Symbol_getData (JNIEnv *env,
     return((*env)->NewStringUTF(env, data));
 }
 
-JNIEXPORT jstring JNICALL
+JNIEXPORT jbyteArray JNICALL
 Java_net_sourceforge_zbar_Symbol_getDataBytes (JNIEnv *env,
                                                jobject obj)
 {
     const zbar_symbol_t *zsym = GET_PEER(Symbol, obj);
-    const void *data = zbar_symbol_get_data(zsym);
+    const jbyte *data = zbar_symbol_get_data(zsym);
     unsigned long datalen = zbar_symbol_get_data_length(zsym);
+
     if(!data || !datalen)
         return(NULL);
 
